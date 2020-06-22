@@ -41,7 +41,7 @@ echo "http://$username:$secret@mon.hcsone.ir:8929" > /opt/MinerControl/.git-cred
 
 
 
-(cd /opt/MinerControl/app ;git init;git remote add origin "https://github.com/salehsedghpour/httpmon";git pull origin master)
+(cd /opt/MinerControl/app ;git init;git remote add origin "https://github.com/salehsedghpour/miner_control";git pull origin master)
 pip3 install -r /opt/MinerControl/app/requirements.txt
 (cd /opt/MinerControl/worker ;git init;git remote add origin "http://$username:$secret@mon.hcsone.ir:8929/$username/workers.git";git config --global user.email "$username@mon.hcsone.ir";git config --global user.name "$username";git config credential.helper store --file=/opt/MinerControl/.git-credentials)
 chmod 777 /opt/MinerControl -R
