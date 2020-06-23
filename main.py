@@ -32,3 +32,4 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
             #check_network(worker['ip'], worker['rig'], worker['name'])
             check_hashrate(hashrate, worker['rig'], worker['name'])
             check_temprature(temprature, worker['rig'], worker['name'])
+    json_file.close()
