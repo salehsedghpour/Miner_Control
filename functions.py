@@ -40,7 +40,7 @@ def getDate(worker_ip, worker_port, command):
 
 
 def getWorkers():
-    with open('../workers/workers.json') as json_file:
+    with open('/opt/MinerControl/workers/workers.json') as json_file:
         data = json.load(json_file)
         return data
 
@@ -48,7 +48,7 @@ def getWorkers():
 def pushData(metric, rig, worker, value, description):
     try:
         config = configparser.ConfigParser()
-        config.read('../config.ini')
+        config.read('/opt/MinerControl/config.ini')
         username = config['default']['username']
         secret = config['default']['secret']
         prometheusPushGW = config['default']['pushgateway_address']

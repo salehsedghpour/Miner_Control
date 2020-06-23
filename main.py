@@ -14,17 +14,18 @@ def check_hashrate(hashrate,rig, worker):
 def check_temprature(temprature, rig, worker):
     pushData("temprature", rig, worker, temprature, "Temprature Value")
 
+syncGit()
 with open('/opt/MinerControl/worker/workers.json') as json_file:
     data = json.load(json_file)
     for worker in data:
         config = configparser.ConfigParser()
-        config.read('../config.ini')
+        config.read('/opt/MinerControl/config.ini')
         farm = config['default']['farm']
         zone = config['default']['zone']
         if worker['farm'] == farm and worker['zone'] == zone:
-            date = getDate(worker['ip'],worker['port'],worker['commands']['monitoring'])
-            hashrate = data['STATS'][1]['GHS 5s']
-            temprature = data['STATS'][1]['temp2']
-            check_network(worker['ip'], worker['rig'], worker['name'])
+            date = getDate(worker['ip'],worker['port'],[worker['commands']['monitoring']])
+            hashrate = date['STATS'][1]['GHS 5s']
+            temprature = date['STATS'][1]['temp2']
+            #check_network(worker['ip'], worker['rig'], worker['name'])
             check_hashrate(hashrate, worker['rig'], worker['name'])
             check_temprature(temprature, worker['rig'], worker['name'])
