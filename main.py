@@ -26,7 +26,7 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
         if worker['farm'] == farm and worker['zone'] == zone:
             date = getDate(worker['ip'],worker['port'],[worker['commands']['monitoring']])
             hashrate = date['STATS'][1]['GHS 5s']
-            temprature = date['STATS'][1]['temp2']
+            temprature = date['STATS'][1]['temp6']
             #check_network(worker['ip'], worker['rig'], worker['name'])
             check_hashrate(hashrate, worker['rig'], worker['name'])
             check_temprature(temprature, worker['rig'], worker['name'])
