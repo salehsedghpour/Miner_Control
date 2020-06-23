@@ -8,7 +8,7 @@ def check_network(ip,rig,worker):
 
 
 def check_hashrate(hashrate,rig, worker):
-    pushData("hash_rate", rig, worker, hashrate, "Hash Rate Value")
+    pushData("hash_rate2", rig, worker, hashrate, "Hash Rate Value")
 
 
 def check_temprature(temprature, rig, worker):
