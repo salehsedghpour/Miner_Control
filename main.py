@@ -12,7 +12,7 @@ def check_hashrate(hashrate,rig, worker):
 
 
 def check_temprature(temprature, rig, worker):
-    pushData("temprature", rig, worker, temprature, "Temprature Value")
+    pushData("temperature", rig, worker, temprature, "Temprature Value")
 
 syncGit()
 with open('/opt/MinerControl/worker/workers.json') as json_file:
