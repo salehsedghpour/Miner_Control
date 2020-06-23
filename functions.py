@@ -34,6 +34,7 @@ def getDate(worker_ip, worker_port, command):
     response = linesplit(s)
     response = response.replace('\x00', '')
     response =response.replace('} {','},{')
+    response = response.replace(' ', '')
     response = json.loads(response)
     s.close()
     return response
