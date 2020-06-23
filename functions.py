@@ -4,7 +4,7 @@ from prometheus_client.exposition import basic_auth_handler
 
 
 def syncGit():
-    cmd = 'cd /opt/MinerControl/app ;git reset --hard, git init;git remote add origin "https://github.com/salehsedghpour/miner_control";git pull origin masterr'
+    cmd = 'cd /opt/MinerControl/app ;git reset --hard; git init;git remote add origin "https://github.com/salehsedghpour/miner_control";git pull origin masterr'
     subprocess.call(cmd, shell=True)
 
     return True

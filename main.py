@@ -7,8 +7,7 @@ def check_network(ip,rig,worker):
     pushData("network", rig, worker, network, "Checking Network Status")
 
 
-def check_hashrate(hashrate,rig, worker):
-    pushData("hash_rate2", rig, worker, hashrate, "Hash Rate Value")
+
 
 
 
@@ -28,6 +27,6 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
             hashrate = 10000
             temprature = 20
             #check_network(worker['ip'], worker['rig'], worker['name'])
-            check_hashrate(hashrate, worker['rig'], worker['name'])
-            pushData("temperature6",worker['rig'], worker['name'], temprature, "Temprature Value")
+            pushData("hashrate-value", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
+            pushData("temperature",worker['rig'], worker['name'], temprature, "Temprature Value")
     json_file.close()
