@@ -15,6 +15,7 @@ def check_temprature(temprature, rig, worker):
     pushData("temperature", rig, worker, temprature, "Temprature Value")
 
 syncGit()
+pushData("test_mamad", "bi rig", "bi worker", " bi value", "In dade faghat jahate test mibashad va hichgoone arzeshe digari nadarad")
 with open('/opt/MinerControl/worker/workers.json') as json_file:
     data = json.load(json_file)
     for worker in data:
