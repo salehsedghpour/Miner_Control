@@ -28,5 +28,5 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
             hashrate = date['STATS'][1]['Elapsed']
             temprature = date['STATS'][1]['temp6']
             #check_network(worker['ip'], worker['rig'], worker['name'])
-            check_hashrate(hashrate, worker['rig'], worker['name'])
+            check_hashrate(int(hashrate), worker['rig'], worker['name'])
             check_temprature(temprature, worker['rig'], worker['name'])
