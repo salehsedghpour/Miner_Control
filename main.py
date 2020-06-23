@@ -11,8 +11,6 @@ def check_network(ip,rig,worker):
 
 
 
-syncGit()
-#pushData("test_mamad", "bi rig", "bi worker", " bi value", "In dade faghat jahate test mibashad va hichgoone arzeshe digari nadarad")
 with open('/opt/MinerControl/worker/workers.json') as json_file:
     data = json.load(json_file)
     for worker in data:
@@ -27,6 +25,6 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
             hashrate = 10000
             temprature = 20
             #check_network(worker['ip'], worker['rig'], worker['name'])
-            pushData("hashrate-value", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
+            pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
             pushData("temperature",worker['rig'], worker['name'], temprature, "Temprature Value")
     json_file.close()
