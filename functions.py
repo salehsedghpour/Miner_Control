@@ -46,7 +46,7 @@ def getWorkers():
 
 
 def pushData(metric, rig, worker, value, description):
-    try:
+#    try:
         config = configparser.ConfigParser()
         config.read('/opt/MinerControl/config.ini')
         username = config['default']['username']
@@ -65,8 +65,8 @@ def pushData(metric, rig, worker, value, description):
 
         push_to_gateway(prometheusPushGW, job='batchA', registry=registry, handler=auth_handler)
         return True
-    except:
-        return False
+#    except:
+#        return False
 
 
 def check_ping(hostname):
