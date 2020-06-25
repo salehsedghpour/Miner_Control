@@ -28,7 +28,7 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
                 pushData("temperature",worker['rig'], worker['name'], temprature, "Temprature Value")
             except:
                 hashrate = 100
-                temprature = 20
+                temprature = date['STATS'][1]['temp6']
                 pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
                 pushData("temperature", worker['rig'], worker['name'], temprature, "Temprature Value")
             #else:
