@@ -20,16 +20,21 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
         zone = config['default']['zone']
         if worker['farm'] == farm and worker['zone'] == zone:
             date = getDate(worker['ip'],worker['port'],[worker['commands']['monitoring']])
-            if date != False:
+            #if date != False:
+            try:
                 hashrate = float(date['STATS'][1]['GHS 5s'])
                 temprature = float(date['STATS'][1]['temp6'])
-                #check_network(worker['ip'], worker['rig'], worker['name'])
                 pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
                 pushData("temperature",worker['rig'], worker['name'], temprature, "Temprature Value")
-            else:
-                hashrate = 0
-                temprature = 2
-                # check_network(worker['ip'], worker['rig'], worker['name'])
-                pushData("hashrate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
+            except:
+                hashrate = 100
+                temprature = 20
+                pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
                 pushData("temperature", worker['rig'], worker['name'], temprature, "Temprature Value")
+            #else:
+            #    hashrate = 0
+            #    temprature = 2
+                # check_network(worker['ip'], worker['rig'], worker['name'])
+            #    pushData("hashrate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
+            #    pushData("temperature", worker['rig'], worker['name'], temprature, "Temprature Value")
     json_file.close()
