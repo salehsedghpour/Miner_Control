@@ -50,7 +50,7 @@ def pushData(metric, rig, worker, value, description):
         secret = config['default']['secret']
         prometheusPushGW = config['default']['pushgateway_address']
         farm = config['default']['farm']
-        zone = config['default']['zone']
+        zone = config['default']['ip']
 
         def auth_handler(url, method, timeout, headers, data):
             return basic_auth_handler(url, method, timeout, headers, data, username, secret)
