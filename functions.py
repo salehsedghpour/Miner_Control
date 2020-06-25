@@ -22,7 +22,7 @@ def getDate(worker_ip, worker_port, command):
         if len(command) == 2:
             s.send(json.dumps({"command": command[0], "parameter": command[1]}))
         else:
-            resp = s.send(json.dumps({"command": command[0]}).encode())
+            resp = s.send(json.dumps({"command": "stats"}).encode())
 
         # print(resp)
         response = linesplit(s)

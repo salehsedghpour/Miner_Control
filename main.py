@@ -28,8 +28,8 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
                 pushData("temperature",worker['rig'], worker['name'], temprature, "Temprature Value")
             else:
                 hashrate = 0
-                temprature = 1
+                temprature = 2
                 # check_network(worker['ip'], worker['rig'], worker['name'])
                 pushData("hashrate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
-                pushData("temperature", worker['ip'], worker['name'], temprature, "Temprature Value")
+                pushData("temperature", worker['rig'], worker['name'], temprature, "Temprature Value")
     json_file.close()
