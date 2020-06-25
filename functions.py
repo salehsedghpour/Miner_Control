@@ -5,32 +5,35 @@ from prometheus_client.exposition import basic_auth_handler
 
 
 def getDate(worker_ip, worker_port, command):
-    def linesplit(socket):
-        buffer = socket.recv(4096).decode()
-        done = False
-        while not done:
-            more = socket.recv(4096).decode()
-            if not more:
-                done = True
-            else:
-                buffer = buffer + more
-        if buffer:
-            return buffer
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((worker_ip, int(worker_port)))
-    if len(command) == 2:
-        s.send(json.dumps({"command": command[0], "parameter": command[1]}))
-    else:
-        resp = s.send(json.dumps({"command": command[0]}).encode())
+    try:
+        def linesplit(socket):
+            buffer = socket.recv(4096).decode()
+            done = False
+            while not done:
+                more = socket.recv(4096).decode()
+                if not more:
+                    done = True
+                else:
+                    buffer = buffer + more
+            if buffer:
+                return buffer
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((worker_ip, int(worker_port)))
+        if len(command) == 2:
+            s.send(json.dumps({"command": command[0], "parameter": command[1]}))
+        else:
+            resp = s.send(json.dumps({"command": command[0]}).encode())
 
-    # print(resp)
-    response = linesplit(s)
-    response = response.replace('\x00', '')
-    response =response.replace('} {','},{')
-    response = response.replace('GHS 5s', 'hashrate')
-    response = json.loads(response)
-    s.close()
-    return response
+        # print(resp)
+        response = linesplit(s)
+        response = response.replace('\x00', '')
+        response =response.replace('} {','},{')
+        response = response.replace('GHS 5s', 'hashrate')
+        response = json.loads(response)
+        s.close()
+        return response
+    except:
+        return False
 
 
 def getWorkers():
@@ -57,7 +60,7 @@ def pushData(metric, rig, worker, value, description):
                   labelnames=["username", "farm", "zone", "rig", "worker"] )
         g.labels(username=username, farm=farm, zone=zone, rig=rig, worker=worker).set(value)
 
-        push_to_gateway(prometheusPushGW, job='batchA', registry=registry, handler=auth_handler)
+        push_to_gateway(prometheusPushGW, job=farm+'-'+zone+'-'+rig+'-'+worker, registry=registry, handler=auth_handler)
         return True
 #    except:
 #        return False

@@ -48,7 +48,7 @@ chmod 777 /opt/MinerControl -R
 chown $SUDO_USER:$SUDO_USER /opt/MinerControl -R
 crontab -l > cronjob
 echo "* * * * * python3 /opt/MinerControl/app/main.py" >> cronjob
-echo "* * * * * python3 /opt/MinerControl/app/workerListUpdate.py" >> cronjob
+echo "* * * * * bash /opt/MinerControl/app/update.sh" >> cronjob
 
 crontab cronjob
 rm cronjob
