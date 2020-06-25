@@ -45,7 +45,7 @@ def getWorkers():
 
 
 def pushData(metric, rig, worker, value, description):
-#    try:
+    try:
         config = configparser.ConfigParser()
         config.read('/opt/MinerControl/config.ini')
         username = config['default']['username']
@@ -62,10 +62,10 @@ def pushData(metric, rig, worker, value, description):
                   labelnames=["username", "farm", "zone", "rig", "worker"] )
         g.labels(username=username, farm=farm, zone=zone, rig=rig, worker=worker).set(value)
 
-        push_to_gateway(prometheusPushGW, job=farm+'-'+zone+'-'+rig+'-'+worker, registry=registry, handler=auth_handler)
+        push_to_gateway(prometheusPushGW, job=metric+'-'+farm+'-'+zone+'-'+rig+'-'+worker, registry=registry, handler=auth_handler)
         return True
-#    except:
-#        return False
+    except:
+        return False
 
 
 def check_ping(hostname):
