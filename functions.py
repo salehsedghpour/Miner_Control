@@ -5,7 +5,7 @@ from prometheus_client.exposition import basic_auth_handler
 
 
 def getDate(worker_ip, worker_port, command):
-    try:
+    #try:
         def linesplit(socket):
             buffer = socket.recv(4096).decode()
             done = False
@@ -32,8 +32,8 @@ def getDate(worker_ip, worker_port, command):
         response = json.loads(response)
         s.close()
         return response
-    except:
-        return False
+    #except:
+        #return False
 
 
 def getWorkers():
