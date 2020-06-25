@@ -20,13 +20,12 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
         zone = config['default']['zone']
         if worker['farm'] == farm and worker['zone'] == zone:
             date = getDate(worker['ip'],worker['port'],[worker['commands']['monitoring']])
-            #if date != False:
-            try:
-                hashrate = float(date['STATS'][1]['GHS 5s'])
+            if date != False:
+                hashrate = float(date['STATS'][1]['hashrate'])
                 temprature = float(date['STATS'][1]['temp6'])
                 pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
                 pushData("temperature",worker['rig'], worker['name'], temprature, "Temprature Value")
-            except:
+            else:
                 hashrate = 100
                 temprature = date['STATS'][1]['temp6']
                 pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
