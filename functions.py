@@ -21,12 +21,13 @@ def getDate(worker_ip, worker_port, command):
         if len(command) == 2:
             s.send(json.dumps({"command": command[0], "parameter": command[1]}))
         else:
-            resp = s.send(json.dumps({"command": "stats"}).encode())
+            resp = s.send(json.dumps({"command": command[0]}).encode())
 
         # print(resp)
         response = linesplit(s)
         response = response.replace('\x00', '')
         response = response.replace('} {','},{')
+        response = response.replace('}{', '},{')
         #response = response.replace('GHS 5s', 'hashrate')
         response = json.loads(response)
         s.close()
