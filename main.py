@@ -21,7 +21,7 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
         if worker['farm'] == farm and worker['zone'] == zone:
             if worker['vendor'] == "Whatsminer":
                 date = getDate(worker['ip'], worker['port'], ['summary'])
-                hashrate = float(date['SUMMARY'][0]['MHS 5s'])
+                hashrate = float(date['SUMMARY'][0]['MHS 5s'])/1000
                 temprature = float(date['SUMMARY'][0]['Temperature'])
                 pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
                 pushData("temperature", worker['rig'], worker['name'], temprature, "Temprature Value")
@@ -29,12 +29,12 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
                 date = getDate(worker['ip'],worker['port'],[worker['commands']['monitoring']])
                 if date != False:
                     if "T9" in worker['Model']:
-                        hashrate = float(date['STATS'][1]['hashrate'])
+                        hashrate = float(date['STATS'][1]['GHS 5s'])
                         temprature = float(date['STATS'][1]['temp9'])
                         pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
                         pushData("temperature", worker['rig'], worker['name'], temprature, "Temprature Value")
                     else:
-                        hashrate = float(date['STATS'][1]['hashrate'])
+                        hashrate = float(date['STATS'][1]['GHS 5s'])
                         temprature = float(date['STATS'][1]['temp6'])
                         pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
                         pushData("temperature",worker['rig'], worker['name'], temprature, "Temprature Value")

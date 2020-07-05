@@ -29,7 +29,7 @@ def getDate(worker_ip, worker_port, command):
         response = response.replace('\x00', '')
         response = response.replace('} {','},{')
         response = response.replace('}{', '},{')
-        response = response.replace('GHS 5s', 'hashrate')
+        #response = response.replace('GHS 5s', 'hashrate')
         response = json.loads(response)
         s.close()
         return response
