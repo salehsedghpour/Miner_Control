@@ -22,7 +22,7 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
             if worker['vendor'] == "Whatsminer":
                 date = getDate(worker['ip'], worker['port'], ['summary'])
                 hashrate = float(date['SUMMARY'][0]['MHS 5s'])
-                temprature = float(date['SUMMARY'][1]['Temperature'])
+                temprature = float(date['SUMMARY'][0]['Temperature'])
                 pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
                 pushData("temperature", worker['rig'], worker['name'], temprature, "Temprature Value")
             else:
