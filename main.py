@@ -28,7 +28,7 @@ with open('/opt/MinerControl/worker/workers.json') as json_file:
             else:
                 date = getDate(worker['ip'],worker['port'],[worker['commands']['monitoring']])
                 if date != False:
-                    if worker['Model'].includes("T9"):
+                    if "T9" in worker['Model']:
                         hashrate = float(date['STATS'][1]['hashrate'])
                         temprature = float(date['STATS'][1]['temp9'])
                         pushData("hash_rate", worker['rig'], worker['name'], hashrate, "Hash Rate Value")
